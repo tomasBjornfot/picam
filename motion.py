@@ -46,16 +46,16 @@ def compareImages(img1,img2):
 def setPath():
     devices = glob.glob('/dev/sd?[0-9]')
     if (len(devices)==0):
-	print "no usb connected"
+	os.system("echo 'no usb connected.' >> /home/pi/cam/data/log.txt")
 	path = '/home/pi/cam/bilder'
     else:
-	print "usb connected..."
+	os.system("echo 'usb connected.' >> /home/pi/cam/data/log.txt")
 	d = devices[-1]
 	path = '/mnt/usb'
 	os.system('sudo mount -t vfat '+str(devices[-1])+' '+path)
-    print "setting output directory to",path,"\n"
     os.chdir(path)
 """ ******************* MAIN *************************** """
+os.system("echo 'starts motion.py' >> /home/pi/cam/data/log.txt")
 setPath()
 mode = str(readSetting('cameraMode'))
 res = str(readSetting('cameraResolution'))
@@ -80,6 +80,12 @@ infoFile.write("Resolution: "+str(cam.resolution)+'\n')
 infoFile.write("Exposure mode: "+str(cam.exposure_mode)+'\n')
 infoFile.write("Detection limit:"+str(detectLimit)+'\n')
 infoFile.write("\nIMAGES:\n")
+
+os.system("echo 'Resolution: "+str(cam.resolution)+"\' >>  /home/pi/cam/data/log.txt")
+os.system("echo 'Exposure mode: "+str(cam.exposure_mode)+"\' >>  /home/pi/cam/data/log.txt")
+os.system("echo 'Detection limit: "+str(detectLimit)+"\' >>  /home/pi/cam/data/log.txt")
+os.system("echo 'Number of images: "+str(noImages)+"\' >>  /home/pi/cam/data/log.txt")
+os.system("echo 'Session time: "+str(sessionTime)+"\' >>  /home/pi/cam/data/log.txt")
 
 while (noTimes < noImages and int(time.time())-timeStart<60*sessionTime):
 	time.sleep(wait)
