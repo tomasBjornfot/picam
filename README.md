@@ -1,4 +1,4 @@
-picam is a collection of scripts for the raspberry pi camera. The scripts uses the pi-camera to take pictures when motion is detected.
+#picam is a collection of scripts for the raspberry pi camera. The scripts uses the pi-camera to take pictures when motion is detected.
 
 FEATURES
 The SW saves pictures on local directory or a usb flash drive, if a drive can be detected.
