@@ -8,25 +8,29 @@ If Raspberry pi is connected to internet (wired or wireless), it will update pi 
 Install SImpleCV and it's dependencies
 Install picamera 
 
-###HOW TO INSTALL (as a pi user):
-Create the following directories...
+###HOW TO INSTALL
+Create the directories:
 ```bash
-**mkdir /home/pi/cam/pics**
-**mkdir /home/pi/cam/data**
-**mkdir /home/pi/cam/code**
+mkdir /home/pi/cam/pics
+mkdir /home/pi/cam/data
+mkdir /home/pi/cam/code
 ```
-Download the master.zip to a temporary directory (tmp). 
+Download the master.zip to a temporary directory (tmp):
+```bash
 cd /home/pi/tmp
 wget https://github.com/tomasBjornfot/picam/archive/master.zip
 ''gunzip  master.zip
 cp picam-master/*.sh /home/pi/cam/code
 cp picam-master/*.py /home/pi/cam/code
 cp settings.txt /home/pi/cam/data
-
+```
 Set scripts as excecutables:
+```bash
 sudo chmod +x /home/pi/cam/code/*
-
+```
 Set start.sh as a startup script. sudo crontab -e 
-Add the following line at the end of the file: @''restart /home/pi/cam/code/start.sh 
-
+Add the following line at the end of the file: 
+```bash
+@''restart /home/pi/cam/code/start.sh 
+```
 ## How to get network access to pics and data directories
