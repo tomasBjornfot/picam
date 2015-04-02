@@ -1,7 +1,7 @@
 cameraMode=auto
 cameraResolution=mid
-noImages=1
+noImages=100
 sessionTime=60
 waitTime=0
-detectLimit=-1
-shutDownWhenDone=False
+detectLimit=3
+shutDownWhenDone=True
