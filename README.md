@@ -10,9 +10,9 @@ Install picamera
 
 ###HOW TO INSTALL (as a pi user):
 Create the following directories...
-*mkdir /home/pi/cam/pics*
-*mkdir /home/pi/cam/data*
-*mkdir /home/pi/cam/code*
+* **mkdir /home/pi/cam/pics**
+* **mkdir /home/pi/cam/data**
+* **mkdir /home/pi/cam/code**
 
 Download the master.zip to a temporary directory (tmp). 
 cd /home/pi/tmp
