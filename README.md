@@ -5,7 +5,7 @@ Picam is a collection of scripts for the raspberry pi camera. The scripts uses t
 The camera takes pictures when a motion is detected. The SW saves pictures on local directory or a usb flash drive. Raspberry pi can shut down when the maximum limit of pictures or session time is reached. If Raspberry pi is connected to internet (wired or wireless), no pictures wil be taken. Instead, the software will be updated.
 
 ###PREREQUISITES
-* Raspian
+* Raspian: http://www.raspbian.org/
 * SimpleCV: http://www.simplecv.org/
 * picamera: https://picamera.readthedocs.org/en/release-1.10/install2.html#raspbian-installation 
 
