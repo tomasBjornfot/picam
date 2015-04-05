@@ -33,11 +33,11 @@ Set scripts as excecutables:
 ```bash
 sudo chmod +x /home/pi/cam/code/*
 ```
-Set start.sh as a startup script. 
+Set start.sh as a startup script: 
 ```bash
 sudo crontab -e
 ```
-Now, add the following line at the end of the file: 
+Add the following line at the end of the crontab file: 
 ```bash
 @reboot /home/pi/cam/code/start.sh 
 ```
