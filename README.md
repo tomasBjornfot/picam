@@ -20,17 +20,23 @@ Download the master.zip to a temporary directory (tmp):
 ```bash
 cd /home/pi/tmp
 wget https://github.com/tomasBjornfot/picam/archive/master.zip
-''gunzip  master.zip
-cp picam-master/*.sh /home/pi/cam/code
-cp picam-master/*.py /home/pi/cam/code
-cp settings.txt /home/pi/cam/data
+```
+Unzip and move the files:
+```bash
+unzip  master.zip
+mv picam-master/*.sh /home/pi/cam/code
+mv picam-master/*.py /home/pi/cam/code
+mv settings.txt /home/pi/cam/data
 ```
 Set scripts as excecutables:
 ```bash
 sudo chmod +x /home/pi/cam/code/*
 ```
-Set start.sh as a startup script. sudo crontab -e 
-Add the following line at the end of the file: 
+Set start.sh as a startup script. 
+```bash
+sudo crontab -e
+```
+Now, add the following line at the end of the file: 
 ```bash
 @reboot /home/pi/cam/code/start.sh 
 ```
