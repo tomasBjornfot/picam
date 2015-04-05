@@ -29,7 +29,7 @@ mv picam-master/*.sh /home/pi/cam/code
 mv picam-master/*.py /home/pi/cam/code
 mv picam-master/settings.txt /home/pi/cam/data
 ```
-Set scripts as excecutables:
+Set scripts as executables:
 ```bash
 sudo chmod +x /home/pi/cam/code/*
 ```
