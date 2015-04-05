@@ -1,5 +1,5 @@
 ###PICAM
-picam is a collection of scripts for the raspberry pi camera. The scripts uses the pi-camera to take pictures when motion is detected. The scripts are used to make a camera applicaition to take pictures of wild animals. The picamera can be operated without monitor, mouse and keyboard. No knowlage of Linux or computer science is needed.
+Picam is a collection of scripts for the raspberry pi camera. The scripts uses the pi-camera to take pictures when motion is detected. The scripts are used to make a camera applicaition to take pictures of wild animals. The picamera can be operated without monitor, mouse and keyboard. No knowlage of Linux or computer science is needed.
 
 ###FEATURES
 The camera takes pictures when a motion is detected. The SW saves pictures on local directory or a usb flash drive. Raspberry pi shuts down when the maximum limit of pictures or session time is reached. If Raspberry pi is connected to internet (wired or wireless), no pictures wil be taken. Instead, the software will be updated.
