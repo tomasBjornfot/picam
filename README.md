@@ -11,6 +11,7 @@ The camera takes pictures when a motion is detected. The SW saves pictures on lo
 ###INSTALLATION
 Create the directories:
 ```bash
+mkdir /home/pi/cam/
 mkdir /home/pi/cam/pics
 mkdir /home/pi/cam/data
 mkdir /home/pi/cam/code
