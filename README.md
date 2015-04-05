@@ -8,7 +8,7 @@ The camera takes pictures when a motion is detected. The SW saves pictures on lo
 * Install SimpleCV: http://www.simplecv.org/
 * Install picamera: https://picamera.readthedocs.org/en/release-1.10/install2.html#raspbian-installation 
 
-###HOW TO INSTALL
+###INSTALLATION
 Create the directories:
 ```bash
 mkdir /home/pi/cam/pics
@@ -39,4 +39,4 @@ Now, add the following line at the end of the file:
 ```bash
 @reboot /home/pi/cam/code/start.sh 
 ```
-## How to get network access to pics and data directories
+##NETWORK ACCESS (LAN)
