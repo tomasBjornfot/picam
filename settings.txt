@@ -1,14 +1,18 @@
 
-# general settings
-shutDownWhenDone=True
+# general settings:
+waitStart=0
 waitTime=0
-
-# motion settings
-cameraMode=auto
 cameraResolution=mid
-detectLimit=3
 noImages=100
 sessionTime=60
+shutDownWhenDone=True
+updateWhenOnline=True //not implemented
 
+# motion settings:
+cameraMode=auto
+detectLimit=3
 
+# night settings:
+calibrateShutterSpeed=False //not implemented
+calibratonIteration=20 //not implemented
 
