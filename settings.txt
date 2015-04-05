@@ -1,7 +1,14 @@
+
+# general settings
+shutDownWhenDone=True
+waitTime=0
+
+# motion settings
 cameraMode=auto
 cameraResolution=mid
+detectLimit=3
 noImages=100
 sessionTime=60
-waitTime=0
-detectLimit=3
-shutDownWhenDone=True
+
+
+
