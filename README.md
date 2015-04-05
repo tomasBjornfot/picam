@@ -6,8 +6,8 @@ Raspberry pi shuts down when the maximum limit of pictures or session time is re
 If Raspberry pi is connected to internet (wired or wireless), it will update pi but no pictures will be taken.
 
 ###PREREQUISITES
-*Install SImpleCV: http://www.simplecv.org/
-*Install picamera: https://picamera.readthedocs.org/en/release-1.10/install2.html#raspbian-installation 
+* Install SimpleCV: http://www.simplecv.org/
+* Install picamera: https://picamera.readthedocs.org/en/release-1.10/install2.html#raspbian-installation 
 
 ###HOW TO INSTALL
 Create the directories:
