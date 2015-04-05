@@ -26,7 +26,7 @@ Unzip and move the files:
 unzip  master.zip
 mv picam-master/*.sh /home/pi/cam/code
 mv picam-master/*.py /home/pi/cam/code
-mv settings.txt /home/pi/cam/data
+mv picam-master/settings.txt /home/pi/cam/data
 ```
 Set scripts as excecutables:
 ```bash
