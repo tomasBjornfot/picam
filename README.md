@@ -5,8 +5,9 @@ The SW saves pictures on local directory or a usb flash drive, if a drive can be
 Raspberry pi shuts down when the maximum limit of pictures or session time is reached.
 If Raspberry pi is connected to internet (wired or wireless), it will update pi but no pictures will be taken.
 
-Install SImpleCV and it's dependencies
-Install picamera 
+###PREREQUISITES
+Install SImpleCV: http://www.simplecv.org/
+Install picamera: https://picamera.readthedocs.org/en/release-1.10/install2.html#raspbian-installation 
 
 ###HOW TO INSTALL
 Create the directories:
@@ -31,6 +32,6 @@ sudo chmod +x /home/pi/cam/code/*
 Set start.sh as a startup script. sudo crontab -e 
 Add the following line at the end of the file: 
 ```bash
-@''restart /home/pi/cam/code/start.sh 
+@reboot /home/pi/cam/code/start.sh 
 ```
 ## How to get network access to pics and data directories
