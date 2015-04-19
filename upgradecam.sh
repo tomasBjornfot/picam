@@ -1,8 +1,8 @@
 #!/bin/bash
 
-mv *.sh /home/pi/cam/code
-mv *.py /home/pi/cam/code
-mv settings /home/pi/cam/data
+mv *.sh /home/pi/picam/code
+mv *.py /home/pi/picam/code
+mv settings /home/pi/picam/data
 
-cd /home/picam/code
+cd /home/pi/picam/code
 chmod +x *
