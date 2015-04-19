@@ -1,8 +1,8 @@
 #!/bin/bash
 sleep 15
-LOG=/home/pi/cam/data/log.txt
-chown root /home/pi/data/*
-chmod 666 /home/pi/cam/data/*
+LOG=/home/pi/picam/data/log.txt
+chown root /home/pi/picam/data/*
+chmod 666 /home/pi/picam/data/*
 echo "**********"$(date)"**********" >> $LOG
 echo "starts start.sh" >> $LOG
 cd /home/pi/cam/code
