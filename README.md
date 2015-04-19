@@ -12,10 +12,10 @@ The camera takes pictures when a motion is detected. The SW saves pictures on lo
 ###INSTALLATION
 Create the directories:
 ```bash
-mkdir /home/pi/cam/
-mkdir /home/pi/cam/pics
-mkdir /home/pi/cam/data
-mkdir /home/pi/cam/code
+mkdir /home/pi/picam/
+mkdir /home/pi/picam/pics
+mkdir /home/pi/picam/data
+mkdir /home/pi/picam/code
 ```
 Download the master.zip to a temporary directory (tmp):
 ```bash
@@ -25,13 +25,13 @@ wget https://github.com/tomasBjornfot/picam/archive/master.zip
 Unzip and move the files:
 ```bash
 unzip  master.zip
-mv picam-master/*.sh /home/pi/cam/code
-mv picam-master/*.py /home/pi/cam/code
-mv picam-master/settings.txt /home/pi/cam/data
+mv picam-master/*.sh /home/pi/picam/code
+mv picam-master/*.py /home/pi/picam/code
+mv picam-master/settings.txt /home/pi/picam/data
 ```
 Set scripts as executables:
 ```bash
-sudo chmod +x /home/pi/cam/code/*
+sudo chmod +x /home/pi/picam/code/*
 ```
 Set start.sh as a startup script: 
 ```bash
@@ -39,6 +39,6 @@ sudo crontab -e
 ```
 Add the following line at the end of the crontab file: 
 ```bash
-@reboot /home/pi/cam/code/start.sh 
+@reboot /home/pi/picam/code/start.sh 
 ```
 ##NETWORK ACCESS (LAN)
