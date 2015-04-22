@@ -1,6 +1,7 @@
 #!/bin/bash
 
-mv *.sh /home/pi/picam/code
+mv start.sh /home/pi/picam/code
+mv updatecam.sh /home/pi/picam/code
 mv *.py /home/pi/picam/code
 mv settings.txt /home/pi/picam/data
 cd ..
