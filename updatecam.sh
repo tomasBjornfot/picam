@@ -10,5 +10,5 @@ rm -r picam-master
 wget https://github.com/tomasBjornfot/picam/archive/master.zip
 unzip master.zip
 rm master.zip
-sudo chmod 777 picam-master/*
+sudo chmod +x picam-master/upgradecam.sh
 exit 0
