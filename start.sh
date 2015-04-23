@@ -5,10 +5,11 @@ chown root /home/pi/picam/data/*
 chmod 666 /home/pi/picam/data/*
 echo "**********"$(date)"**********" >> $LOG
 echo "starts start.sh" >> $LOG
-cd /home/pi/cam/code
+cd /home/pi/picam/code
 VAR=$(ping www.google.se -c 5 | grep "0% packet loss")
 if [ -z $VAR ]; then
 	echo "no internet connection found" >> $LOG
+	echo "starts motion.py" >> $LOG
 	./motion.py
 	sudo umount /mnt/usb
 else
