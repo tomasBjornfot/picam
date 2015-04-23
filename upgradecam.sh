@@ -9,3 +9,6 @@ rm -r picam-master
 
 cd /home/pi/picam/code
 chmod +x *
+
+cd /home/picam/data
+chmod 666 settings.txt
