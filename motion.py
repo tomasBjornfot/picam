@@ -65,15 +65,17 @@ def setPath():
 """ ******************* MAIN *************************** """
 os.system("echo 'starts motion.py' >> /home/pi/picam/data/log.txt")
 setPath()
-
-cameraMode = str(readSetting('cameraMode'))
+#reads general settings from settings.txt
+waitStart = int(readSetting('waitStart'))
+waitTime = int(readSetting('waitTime'))
 cameraResolution = str(readSetting('cameraResolution'))
 noImages = int(readSetting('noImages'))
 sessionTime = int(readSetting('sessionTime'))
 shutDownWhenDone = str(readSetting('shutDownWhenDone'))
-waitTime = int(readSetting('waitTime'))
+
+# reads motion specific settings from settings.txt
+cameraMode = str(readSetting('cameraMode'))
 detectLimit = int(readSetting('detectLimit'))
-waitStart = int(readSetting('waitStart'))
 
 noTimes = 0
 noIterations = 0
