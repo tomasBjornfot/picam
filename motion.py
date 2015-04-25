@@ -65,8 +65,9 @@ def setPath():
 """ ******************* MAIN *************************** """
 os.system("echo 'starts motion.py' >> /home/pi/picam/data/log.txt")
 setPath()
-mode = str(readSetting('cameraMode'))
-res = str(readSetting('cameraResolution'))
+
+cameraMode = str(readSetting('cameraMode'))
+cameraResolution = str(readSetting('cameraResolution'))
 noImages = int(readSetting('noImages'))
 sessionTime = int(readSetting('sessionTime'))
 shutDownWhenDone = str(readSetting('shutDownWhenDone'))
@@ -80,7 +81,7 @@ timeStart = int(time.time())
 
 date = setDate()
 cam = picamera.PiCamera()
-setCamera(cam,mode,res)
+setCamera(cam,cameraMode,cameraResolution)
 refImage = takeImage(cam)
 
 infoFile = open(date+'.txt','w')
