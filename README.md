@@ -22,16 +22,15 @@ Download the master.zip to a temporary directory (tmp):
 cd /home/pi/tmp
 wget https://github.com/tomasBjornfot/picam/archive/master.zip
 ```
-Unzip and move the files:
+Unzip
 ```bash
 unzip  master.zip
-mv picam-master/*.sh /home/pi/picam/code
-mv picam-master/*.py /home/pi/picam/code
-mv picam-master/settings.txt /home/pi/picam/data
+cd picam-master
 ```
-Set scripts as executables:
+Set upgrade.sh script as executable and execute:
 ```bash
-sudo chmod +x /home/pi/picam/code/*
+sudo chmod +x upgrade.sh
+sudo ./upgrade.sh
 ```
 Set start.sh as a startup script: 
 ```bash
@@ -42,3 +41,6 @@ Add the following line at the end of the crontab file:
 @reboot /home/pi/picam/code/start.sh 
 ```
 ##NETWORK ACCESS (LAN)
+'''bash
+sudo nano /etc/samba/smb-conf
+'''
