@@ -1,5 +1,7 @@
 
-# general settings:
+# general settin
+#photomode=dark
+photoMode=motion
 waitStart=0
 waitTime=0
 cameraResolution=mid
@@ -7,14 +9,12 @@ noImages=100
 sessionTime=60
 shutDownWhenDone=True
 updateWhenOnline=True //not implemented
-nightMode=False // not implemented
 
-# motion settings:
+# motion specific settings:
 cameraMode=auto
 detectLimit=3
 
-# night settings:
+# dark spcific settings:
 shutterSpeed=2 // not implemented
 calibrateShutterSpeed=False //not implemented
 calibratonIteration=20 //not implemented
-
