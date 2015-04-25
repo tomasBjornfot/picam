@@ -41,6 +41,8 @@ Add the following line at the end of the crontab file:
 @reboot /home/pi/picam/code/start.sh 
 ```
 ##NETWORK ACCESS (LAN)
-'''bash
+Open samba configuration file
+```bash
 sudo nano /etc/samba/smb-conf
-'''
+```
+Add the following lines at the end of the file:
