@@ -1,5 +1,5 @@
 
-# general settin
+# general settings
 #photomode=dark
 photoMode=motion
 waitStart=0
