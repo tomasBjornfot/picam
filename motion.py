@@ -69,6 +69,7 @@ setPath()
 #reads general settings from settings.txt
 waitStart = int(readSetting('waitStart'))
 waitTime = int(readSetting('waitTime'))
+waitEnd = int(readSetting('waitEnd'))
 cameraResolution = str(readSetting('cameraResolution'))
 noImages = int(readSetting('noImages'))
 sessionTime = int(readSetting('sessionTime'))
@@ -120,7 +121,7 @@ infoFile.close()
 
 if (shutDownWhenDone == "True"):
 	print "shutting down in 2 minutes..."
-	time.sleep(120)
+	time.sleep(60*waitEnd)
 	os.system('sudo shutdown -h now')                     
 cam.close()
 print "done..."                            
