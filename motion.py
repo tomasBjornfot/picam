@@ -120,7 +120,7 @@ while (noTimes < noImages and int(time.time())-timeStart<60*sessionTime):
 infoFile.close()
 
 if (shutDownWhenDone == "True"):
-	print "shutting down in 2 minutes..."
+	print "shutting down in",str(waitEnd),"minutes..."
 	time.sleep(60*waitEnd)
 	os.system('sudo shutdown -h now')                     
 cam.close()
