@@ -3,6 +3,7 @@
 photoMode=motion
 waitStart=0
 waitTime=0
+waitEnd=1
 cameraResolution=mid
 noImages=100
 sessionTime=60
