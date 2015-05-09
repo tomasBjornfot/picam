@@ -108,7 +108,7 @@ while (noTimes < noImages and int(time.time())-timeStart<60*sessionTime):
 	noIterations = noIterations + 1
         newImage = takeImage(cam)
         diff = compareImages(refImage,newImage,0.1)
-        info = "Detection value="+str(diff)+" iteration="+str(noIterations)+" time="+str(time.strftime('%H%M%S'))
+        info = "Picture="+str(noTimes)+" DetectionValue="+str(diff)+" iteration="+str(noIterations)+" time="+str(time.strftime('%H%M%S'))
         print info
 	if (diff > detectLimit):
             print "motion detected..."
