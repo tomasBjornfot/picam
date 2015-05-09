@@ -70,7 +70,7 @@ date = setDate()
 cam = picamera.PiCamera()
 
 #reads general settings from settings.txt
-photoMode = int(readSetting('photoMode'))
+photoMode = str(readSetting('photoMode'))
 waitStart = int(readSetting('waitStart'))
 waitTime = int(readSetting('waitTime'))
 waitEnd = int(readSetting('waitEnd'))
