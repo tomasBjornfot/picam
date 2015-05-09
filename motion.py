@@ -34,7 +34,8 @@ def setCamera(cam,mode,res):
 def takeImage(cam):
     stream = picamera.array.PiRGBArray(cam)
     cam.capture(stream, format='rgb')
-    return Image( stream.array ).rotate90().rotate(180)
+    #return Image( stream.array ).rotate90().rotate(180)
+    return Image( stream.array ).rotate90()
 """ ************** comapre images *************** """
 def compareImages_old(img1,img2,diffSize):
     img1 = img1.scale(diffSize).grayscale()
