@@ -46,3 +46,4 @@ Open samba configuration file
 sudo nano /etc/samba/smb.conf
 ```
 Add the following lines at the end of the file:
+NOT READY...
