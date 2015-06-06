@@ -77,6 +77,13 @@ class Camera:
 			self.path = '/mnt/usb'
 		os.system('sudo mount -t vfat '+str(devices[-1])+' '+path)
 		os.chdir(self.path)
+	"" ********************* CLOSE ************************* """
+	def closeCam(self):
+		self.cam.close()
+		if (self.shutDownWhenDone == "True"):
+			print "shutting down in",str(self.waitEnd),"minutes..."
+			time.sleep(60*self.waitEnd)
+			os.system('sudo shutdown -h now') 
 	""" ******************* MAIN *************************** """
 	def motion(self):
 		time.sleep(waitStart*60)
@@ -118,9 +125,9 @@ class Camera:
         			noTimes = noTimes + 1
 				refImage = newImage
 				infoFile.close()
+		camClose()                     
+	def dark(self):
+		print "dark..."
 		self.cam.close()
-		if (shutDownWhenDone == "True"):
-		print "shutting down in",str(self.waitEnd),"minutes..."
-		time.sleep(60*self.waitEnd)
-		os.system('sudo shutdown -h now')                     
-		print "done..."
+	def video(self):
+		print "video..."
