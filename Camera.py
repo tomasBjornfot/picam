@@ -10,7 +10,7 @@ class Camera:
 	def __init__(self):
 		self.cam = picamera.PiCamera()
 		self.stream = picamera.array.PiRGBArray(self.cam)
-		self.path = setPath()
+		setPath()
 		self.date = setDate()
 		
 		#reads general settings from settings.txt
@@ -60,8 +60,8 @@ class Camera:
 		print "exposure mode:",self.cam.exposure_mode
 	""" ************** take image *************** """
 	def takeImage(self):
-		self.cam.capture(stream, format='rgb')
-		return Image( stream.array ).rotate90()
+		self.cam.capture(self.stream, format='rgb')
+		return Image( self.stream.array ).rotate90()
 	""" ************** comapre images *************** """
 	def compareImages(img1,img2,diffSize):
 		img1 = img1.scale(diffSize)
@@ -69,17 +69,17 @@ class Camera:
 		diffImg = img1 - img2
 		return int(100.0/256.0*sum(diffImg.meanColor()))
 	""" ******************* set path *********************** """
-	def setPath(self):
+	def setPath():
 		devices = glob.glob('/dev/sd?[0-9]')
 		if (len(devices)==0):
 			os.system("echo 'no usb connected.' >> /home/pi/picam/data/log.txt")
-			self.path = '/home/pi/picam/pics'
+			path = '/home/pi/picam/pics'
 		else:
 			os.system("echo 'usb connected.' >> /home/pi/picam/data/log.txt")
 			d = devices[-1]
-			self.path = '/mnt/usb'
-		os.system('sudo mount -t vfat '+str(devices[-1])+' '+path)
-		os.chdir(self.path)
+			path = '/mnt/usb'
+		os.system('sudo mount -t vfat '+str(devices[-1])+' '+ path)
+		os.chdir(path)
 	""" ********************* close ************************* """
 	def closeCam(self):
 		self.cam.close()
@@ -89,7 +89,7 @@ class Camera:
 			os.system('sudo shutdown -h now') 
 	""" ******************* MOTION *************************** """
 	def motion(self):
-		time.sleep(waitStart*60)
+		time.sleep(self.waitStart*60)
 		os.system("echo 'starts motion.py' >> /home/pi/picam/data/log.txt")
 
 		noTimes = 0
@@ -114,7 +114,7 @@ class Camera:
 		os.system("echo 'wait time: "+str(self.waitTime)+"\' >>  /home/pi/picam/data/log.txt")
 		os.system("echo 'wait start: "+str(self.waitStart)+"\' >>  /home/pi/picam/data/log.txt")
 
-		while (noTimes < noImages and int(time.time())-timeStart<60*self.sessionTime):
+		while (noTimes < self.noImages and int(time.time())-timeStart<60*self.sessionTime):
 			time.sleep(self.waitTime)
 			noIterations = noIterations + 1
 			newImage = takeImage()
