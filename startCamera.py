@@ -8,6 +8,4 @@ if (thisCamera.photoMode == 'dark'):
   thisCamera.dark()
 if (thisCamera.photoMode == 'video'):
   thisCamera.video()
-thisCamera.cameraClose()
-
-# 
+thisCamera.closeCam()
