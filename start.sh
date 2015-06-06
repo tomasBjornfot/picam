@@ -9,7 +9,7 @@ cd /home/pi/picam/code
 VAR=$(ping www.google.se -c 5 | grep "0% packet loss")
 if [ -z $VAR ]; then
 	echo "no internet connection found" >> $LOG
-	echo "starts motion.py" >> $LOG
+	echo "starts camera.py" >> $LOG
 	./motion.py
 	sudo umount /mnt/usb
 else
