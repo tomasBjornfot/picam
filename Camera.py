@@ -9,34 +9,33 @@ class Camera:
 	""" ************ constructor ********** """
 	def __init__(self):
 		self.cam = picamera.PiCamera()
-		self.stream = picamera.array.PiRGBArray(self.cam)
-		setPath()
-		self.date = setDate()
+		self.setPath()
+		self.date = self.setDate()
 		
 		#reads general settings from settings.txt
-		self.photoMode = str(readSetting('photoMode'))
-		self.waitStart = int(readSetting('waitStart'))
-		self.waitTime = int(readSetting('waitTime'))
-		self.waitEnd = int(readSetting('waitEnd'))
-		self.cameraResolution = str(readSetting('cameraResolution'))
-		self.noImages = int(readSetting('noImages'))
-		self.sessionTime = int(readSetting('sessionTime'))
-		self.shutDownWhenDone = str(readSetting('shutDownWhenDone'))
+		self.photoMode = str(self.readSetting('photoMode'))
+		self.waitStart = int(self.readSetting('waitStart'))
+		self.waitTime = int(self.readSetting('waitTime'))
+		self.waitEnd = int(self.readSetting('waitEnd'))
+		self.cameraResolution = str(self.readSetting('cameraResolution'))
+		self.noImages = int(self.readSetting('noImages'))
+		self.sessionTime = int(self.readSetting('sessionTime'))
+		self.shutDownWhenDone = str(self.readSetting('shutDownWhenDone'))
 		
 		# reads motion specific settings from settings.txt
-		self.cameraMode = str(readSetting('cameraMode'))
-		self.detectLimit = int(readSetting('detectLimit'))
+		self.cameraMode = str(self.readSetting('cameraMode'))
+		self.detectLimit = int(self.readSetting('detectLimit'))
 		
 		# reads dark specific settings from settings.txt
 		
 		# reads video specific settings from settings.txt
 		
 	""" ************* set date ************* """
-	def setDate():
+	def setDate(self):
 		date = time.strftime('%Y%m%d')+'_'+time.strftime('%H%M%S')
 		return date
 	""" ************* read settings ************* """
-	def readSetting(inSetting):
+	def readSetting(self,inSetting):
 		file = open('/home/pi/picam/data/settings.txt','r')
 		lines = file.readlines()
 		for line in lines:
@@ -60,16 +59,17 @@ class Camera:
 		print "exposure mode:",self.cam.exposure_mode
 	""" ************** take image *************** """
 	def takeImage(self):
-		self.cam.capture(self.stream, format='rgb')
-		return Image( self.stream.array ).rotate90()
+		stream = picamera.array.PiRGBArray(self.cam)
+		self.cam.capture(stream, format='rgb')
+		return Image(stream.array).rotate90()
 	""" ************** comapre images *************** """
-	def compareImages(img1,img2,diffSize):
+	def compareImages(self,img1,img2,diffSize):
 		img1 = img1.scale(diffSize)
 		img2 = img2.scale(diffSize)
 		diffImg = img1 - img2
 		return int(100.0/256.0*sum(diffImg.meanColor()))
 	""" ******************* set path *********************** """
-	def setPath():
+	def setPath(self):
 		devices = glob.glob('/dev/sd?[0-9]')
 		if (len(devices)==0):
 			os.system("echo 'no usb connected.' >> /home/pi/picam/data/log.txt")
@@ -96,13 +96,13 @@ class Camera:
 		noIterations = 0
 		timeStart = int(time.time())
 		
-		setCamera()
-		refImage = takeImage()
+		self.setCamera()
+		refImage = self.takeImage()
 
-		infoFile = open(date+'.txt','w')
+		infoFile = open(self.date+'.txt','w')
 		infoFile.write("CAMERA:\n")
-		infoFile.write("Resolution: "+str(cam.resolution)+'\n')
-		infoFile.write("Exposure mode: "+str(cam.exposure_mode)+'\n')
+		infoFile.write("Resolution: "+str(self.cam.resolution)+'\n')
+		infoFile.write("Exposure mode: "+str(self.cam.exposure_mode)+'\n')
 		infoFile.write("Detection limit:"+str(self.detectLimit)+'\n')
 		infoFile.write("\nIMAGES:\n")
 
@@ -117,8 +117,8 @@ class Camera:
 		while (noTimes < self.noImages and int(time.time())-timeStart<60*self.sessionTime):
 			time.sleep(self.waitTime)
 			noIterations = noIterations + 1
-			newImage = takeImage()
-			diff = compareImages(refImage,newImage,0.1)
+			newImage = self.takeImage()
+			diff = self.compareImages(refImage,newImage,0.1)
 			info = "Picture="+str(noTimes)+" DetectionValue="+str(diff)+" iteration="+str(noIterations)+" time="+str(time.strftime('%H%M%S'))
 			print info
 			if (diff > self.detectLimit):
@@ -127,8 +127,7 @@ class Camera:
 				infoFile.write(info+'\n')
         			noTimes = noTimes + 1
 				refImage = newImage
-				infoFile.close()
-		camClose()                     
+		infoFile.close()                
 	""" ******************* DARK *************************** """
 	def dark(self):
 		print "dark..."
