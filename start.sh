@@ -10,7 +10,7 @@ VAR=$(ping www.google.se -c 5 | grep "0% packet loss")
 if [ -z $VAR ]; then
 	echo "no internet connection found" >> $LOG
 	echo "starts camera.py" >> $LOG
-	./motion.py
+	./camera.py
 	sudo umount /mnt/usb
 else
 	echo "internet connection found" >> $LOG
