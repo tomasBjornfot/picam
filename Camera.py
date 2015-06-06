@@ -29,7 +29,8 @@ class Camera:
 		# reads dark specific settings from settings.txt
 		
 		# reads video specific settings from settings.txt
-		
+		self.recTime = int(self.readSetting('recordingTime'))
+		self.noFiles = int(self.readSetting('noFiles'))
 	""" ************* set date ************* """
 	def setDate(self):
 		date = time.strftime('%Y%m%d')+'_'+time.strftime('%H%M%S')
@@ -130,7 +131,19 @@ class Camera:
 		infoFile.close()                
 	""" ******************* DARK *************************** """
 	def dark(self):
-		print "dark..."
+		print "dark imaging"
 	""" ******************* VIDEO *************************** """
 	def video(self):
-		print "video..."
+		time.sleep(self.waitStart*60)
+		toLog =  "recording "+str(self.noFiles)+" video files for "+str(self.recTime)+" minutes"
+		print toLog
+		os.system('echo ' + toLog + ' >>  /home/pi/picam/data/log.txt')
+		self.cam.resolution = (1280,720)
+		print "recording file 1"
+		self.cam.start_recording('video_1.h264')
+		self.cam.wait_recording(self.recTime*60)
+		for i in range(2,self.noFiles):
+			print "recording file",i
+			self.cam.split_recording('video_%d.h264' % i)
+			self.cam.wait_recording(self.recTime*60)
+			self.cam.stop_recording()
