@@ -142,8 +142,8 @@ class Camera:
 		print "recording file 1"
 		self.cam.start_recording('video_1.h264')
 		self.cam.wait_recording(self.recTime*60)
-		for i in range(2,self.noFiles):
+		for i in range(2,self.noFiles+1):
 			print "recording file",i
 			self.cam.split_recording('video_%d.h264' % i)
 			self.cam.wait_recording(self.recTime*60)
-			self.cam.stop_recording()
+		self.cam.stop_recording()
