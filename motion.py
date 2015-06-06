@@ -69,10 +69,10 @@ def setPath():
 	os.system('sudo mount -t vfat '+str(devices[-1])+' '+path)
     os.chdir(path)
 """ ******************* MAIN *************************** """
+time.sleep(waitStart*60)
 os.system("echo 'starts motion.py' >> /home/pi/picam/data/log.txt")
 setPath()
 date = setDate()
-cam = picamera.PiCamera()
 
 #reads general settings from settings.txt
 photoMode = str(readSetting('photoMode'))
@@ -92,6 +92,7 @@ noTimes = 0
 noIterations = 0
 timeStart = int(time.time())
 
+cam = picamera.PiCamera()
 setCamera(cam,cameraMode,cameraResolution)
 refImage = takeImage(cam)
 
@@ -110,7 +111,6 @@ os.system("echo 'Session time: "+str(sessionTime)+"\' >>  /home/pi/picam/data/lo
 os.system("echo 'wait time: "+str(waitTime)+"\' >>  /home/pi/picam/data/log.txt")
 os.system("echo 'wait start: "+str(waitStart)+"\' >>  /home/pi/picam/data/log.txt")
 
-time.sleep(waitStart*60)
 while (noTimes < noImages and int(time.time())-timeStart<60*sessionTime):
 	time.sleep(waitTime)
 	noIterations = noIterations + 1
