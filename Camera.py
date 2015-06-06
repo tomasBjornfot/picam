@@ -41,8 +41,8 @@ class Camera:
 				continue
 			setting = line.split('=')
 			if (setting[0]== inSetting):
-	return setting[1].rstrip('\n')
-	return 'null'
+		return setting[1].rstrip('\n')
+		return 'null'
 	""" ************* set camera ************* """
 	def setCamera(self):
 		#print "sets camera parameters"
@@ -52,9 +52,9 @@ class Camera:
 			self.cam.resolution = (1600,1200)
 		if (self.cameraResolution == "low"):
 			self.cam.resolution = (800,600)
-	self.cam.exposure_mode = self.cameraMode
-	print "camera resolution:", self.cam.resolution
-	print "exposure mode:",self.cam.exposure_mode
+		self.cam.exposure_mode = self.cameraMode
+		print "camera resolution:", self.cam.resolution
+		print "exposure mode:",self.cam.exposure_mode
 	""" ************** take image *************** """
 	def takeImage(self):
 		self.cam.capture(stream, format='rgb')
@@ -77,14 +77,14 @@ class Camera:
 			self.path = '/mnt/usb'
 		os.system('sudo mount -t vfat '+str(devices[-1])+' '+path)
 		os.chdir(self.path)
-	"" ********************* CLOSE ************************* """
+	""" ********************* close ************************* """
 	def closeCam(self):
 		self.cam.close()
 		if (self.shutDownWhenDone == "True"):
 			print "shutting down in",str(self.waitEnd),"minutes..."
 			time.sleep(60*self.waitEnd)
 			os.system('sudo shutdown -h now') 
-	""" ******************* MAIN *************************** """
+	""" ******************* MOTION *************************** """
 	def motion(self):
 		time.sleep(waitStart*60)
 		os.system("echo 'starts motion.py' >> /home/pi/picam/data/log.txt")
@@ -126,8 +126,11 @@ class Camera:
 				refImage = newImage
 				infoFile.close()
 		camClose()                     
+	""" ******************* DARK *************************** """
 	def dark(self):
 		print "dark..."
-		self.cam.close()
+		camClose()
+	""" ******************* VIDEO *************************** """
 	def video(self):
 		print "video..."
+		camClose()
