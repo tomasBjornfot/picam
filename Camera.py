@@ -132,8 +132,6 @@ class Camera:
 	""" ******************* DARK *************************** """
 	def dark(self):
 		print "dark..."
-		camClose()
 	""" ******************* VIDEO *************************** """
 	def video(self):
 		print "video..."
-		camClose()
