@@ -1,19 +1,37 @@
 
-# general settings
+# GENERAL SETTINGS
+# motion, dark or video option
 photoMode=motion
+# the time to wait (in minutes) before starting taking pictures
 waitStart=0
+# the time to wait (in seconds) between taking images 
 waitTime=0
+# the time to wait (in minutes) before shutting down
 waitEnd=1
+# low (600,600), mid (1200,1600) or high option (max resolution)
 cameraResolution=mid
+# the maximum number of images
 noImages=100
+# the maximum session time (in minutes)
 sessionTime=60
+# set to True of False if computer should shut down after session
 shutDownWhenDone=True
 
-# motion specific settings:
+# MOTION SPECIFIC SETTINGS
+# options?
 cameraMode=auto
+# The limit in which a picture should be taken (0-100). Set -1 if a picture should allways be taken
 detectLimit=3
 
-# dark spcific settings:
+# DARK SPECIFIC SETTINGS
+# camera shutter speed
 shutterSpeed=2 // not implemented
+# If shutter speed should allways be auto calibrated
 calibrateShutterSpeed=False //not implemented
+# what is this?
 calibratonIteration=20 //not implemented
+
+# VIDEO SPECIFIC SETTINGS
+videoTime=5 // not implemented
+noFiles=5 // not implemented
+
