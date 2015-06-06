@@ -27,6 +27,10 @@ class Camera:
 		self.cameraMode = str(readSetting('cameraMode'))
 		self.detectLimit = int(readSetting('detectLimit'))
 		
+		# reads dark specific settings from settings.txt
+		
+		# reads video specific settings from settings.txt
+		
 	""" ************* set date ************* """
 	def setDate():
 		date = time.strftime('%Y%m%d')+'_'+time.strftime('%H%M%S')
