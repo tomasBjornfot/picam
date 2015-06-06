@@ -14,6 +14,11 @@ def readSetting(inSetting):
     file = open('/home/pi/picam/data/settings.txt','r')
     lines = file.readlines()
     for line in lines:
+    	"""
+    	# skip line if comment
+    	if line[0] == '#':
+    		continue
+    	"""
 	setting = line.split('=')
 	if (setting[0]== inSetting):
 		return setting[1].rstrip('\n')
