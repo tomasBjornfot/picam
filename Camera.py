@@ -2,6 +2,7 @@
 # -*- coding: iso-8859-1 -*-
 import time,os,sys,picamera,picamera.array,io,glob
 import numpy as np
+from fractions import Fraction
 from math import fabs
 from SimpleCV import Image, Display, Color
 
@@ -9,8 +10,8 @@ class Camera:
 	""" ************ constructor ********** """
 	def __init__(self):
 		self.cam = picamera.PiCamera()
-		self.setPath()
 		self.date = self.setDate()
+		self.path = self.setPath()
 		
 		#reads general settings from settings.txt
 		self.photoMode = str(self.readSetting('photoMode'))
@@ -21,13 +22,11 @@ class Camera:
 		self.noImages = int(self.readSetting('noImages'))
 		self.sessionTime = int(self.readSetting('sessionTime'))
 		self.shutDownWhenDone = str(self.readSetting('shutDownWhenDone'))
-		
 		# reads motion specific settings from settings.txt
 		self.cameraMode = str(self.readSetting('cameraMode'))
 		self.detectLimit = int(self.readSetting('detectLimit'))
-		
 		# reads dark specific settings from settings.txt
-		
+		self.shutterSpeed =int(self.readSetting('shutterSpeed'))
 		# reads video specific settings from settings.txt
 		self.recTime = int(self.readSetting('recordingTime'))
 		self.noFiles = int(self.readSetting('noFiles'))
@@ -37,7 +36,7 @@ class Camera:
 		return date
 	""" ************* read settings ************* """
 	def readSetting(self,inSetting):
-		file = open('/home/pi/picam/data/settings.txt','r')
+		file = open(self.path+'/settings.txt','r')
 		lines = file.readlines()
 		for line in lines:
 			if line[0] == '#':
@@ -79,8 +78,10 @@ class Camera:
 			os.system("echo 'usb connected.' >> /home/pi/picam/data/log.txt")
 			d = devices[-1]
 			path = '/mnt/usb'
-		os.system('sudo mount -t vfat '+str(devices[-1])+' '+ path)
+			os.system('sudo mount -t vfat '+str(devices[-1])+' '+ path)
 		os.chdir(path)
+		os.mkdir(self.date)
+		return path
 	""" ********************* close ************************* """
 	def closeCam(self):
 		self.cam.close()
@@ -100,7 +101,7 @@ class Camera:
 		self.setCamera()
 		refImage = self.takeImage()
 
-		infoFile = open(self.date+'.txt','w')
+		infoFile = open('./'+self.date+'/info.txt','w')
 		infoFile.write("CAMERA:\n")
 		infoFile.write("Resolution: "+str(self.cam.resolution)+'\n')
 		infoFile.write("Exposure mode: "+str(self.cam.exposure_mode)+'\n')
@@ -124,7 +125,7 @@ class Camera:
 			print info
 			if (diff > self.detectLimit):
 				print "motion detected..."
-				newImage.save('motion_'+self.date+'_'+str(noTimes)+'.png')
+				newImage.save('./'+self.date+'/motion_'+self.date+'_'+str(noTimes)+'.jpg')
 				infoFile.write(info+'\n')
         			noTimes = noTimes + 1
 				refImage = newImage
@@ -132,6 +133,17 @@ class Camera:
 	""" ******************* DARK *************************** """
 	def dark(self):
 		print "dark imaging"
+                # Set a framerate of 1/6fps, then set shutter
+                # speed to 4s and ISO to 800
+		self.setCamera()
+		self.cam.framerate = Fraction(1, 6)
+		self.cam.shutter_speed = self.shutterSpeed*1000000
+		self.cam.exposure_mode = 'off'
+		self.cam.iso = 800
+		self.cam.abw_mode = 'off'
+		for noTimes in range(0,self.noImages):
+			print "dark image:",noTimes
+			self.cam.capture('./'+self.date+'/dark_'+self.date+'_'+str(noTimes)+'.jpg')
 	""" ******************* VIDEO *************************** """
 	def video(self):
 		time.sleep(self.waitStart*60)
@@ -140,10 +152,10 @@ class Camera:
 		os.system('echo ' + toLog + ' >>  /home/pi/picam/data/log.txt')
 		self.cam.resolution = (1280,720)
 		print "recording file 1"
-		self.cam.start_recording('video_1.h264')
+		self.cam.start_recording('./'+self.date+'/video_1.h264')
 		self.cam.wait_recording(self.recTime*60)
 		for i in range(2,self.noFiles+1):
 			print "recording file",i
-			self.cam.split_recording('video_%d.h264' % i)
+			self.cam.split_recording('./'+self.date+'/video_%d.h264' % i)
 			self.cam.wait_recording(self.recTime*60)
 		self.cam.stop_recording()
