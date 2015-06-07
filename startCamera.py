@@ -3,9 +3,13 @@
 from Camera import Camera
 thisCamera = Camera()
 if (thisCamera.photoMode == 'motion'):
-  thisCamera.motion()
+	thisCamera.motion()
 if (thisCamera.photoMode == 'dark'):
-  thisCamera.dark()
+	thisCamera.dark()
 if (thisCamera.photoMode == 'video'):
-  thisCamera.video()
+	thisCamera.video()
+if (thisCamera.photoMode == 'test'):
+	thisCamera.motion()
+	thisCamera.dark()
+	thisCamera.video()
 thisCamera.closeCam()
