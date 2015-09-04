@@ -23,9 +23,9 @@ class Camera:
 		self.sessionTime = int(self.readSetting('sessionTime'))
 		self.shutDownWhenDone = str(self.readSetting('shutDownWhenDone'))
 		if self.readSetting('ledOn')=='False':
-                        self.cam.led = False
-                if self.readSetting('ledOn')=='True':
-                        self.cam.led = True
+			self.cam.led = False
+		if self.readSetting('ledOn')=='True':
+			self.cam.led = True
 		# reads motion specific settings from settings.txt
 		self.cameraMode = str(self.readSetting('cameraMode'))
 		self.detectLimit = int(self.readSetting('detectLimit'))
